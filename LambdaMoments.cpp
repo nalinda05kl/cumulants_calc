@@ -144,9 +144,9 @@ void CentralMomCalcRefMult(Int_t *BinEntriesRefMult, Double_t **CentralMomRefMul
 {
 	/*======================================= Central moments calculation =============================*/
 
-	TFile *LambdaMom_file = new TFile(InRootFile, "read");
+  TFile *LambdaMom_file = new TFile(InRootFile, "read");
 
- 	TProfile *NetL_moment_1 = (TProfile*) LambdaMom_file->Get(hh_M_1);
+  TProfile *NetL_moment_1 = (TProfile*) LambdaMom_file->Get(hh_M_1);
   TProfile *NetL_moment_2 = (TProfile*) LambdaMom_file->Get(hh_M_2);
   TProfile *NetL_moment_3 = (TProfile*) LambdaMom_file->Get(hh_M_3);
   TProfile *NetL_moment_4 = (TProfile*) LambdaMom_file->Get(hh_M_4);
@@ -186,14 +186,14 @@ void CentralMomCalcRefMult(Int_t *BinEntriesRefMult, Double_t **CentralMomRefMul
   	M_8 = NetL_moment_8 -> GetBinContent(RefMultBin);
 
     // Calculation of central moments.
-	  m1 = M_1;
+	m1 = M_1;
   	m2 = M_2  -  TMath::Power(M_1, 2);
   	m3 = M_3  -  3 * M_1 * m2  -   TMath::Power(M_1, 3);
   	m4 = M_4  -  4 * M_1 * m3  -   6 * TMath::Power(M_1, 2) * m2   -  TMath::Power(M_1, 4);
   	m5 = M_5  -  5 * M_1 * m4  -  10 * TMath::Power(M_1, 2) * m3   -  10 * TMath::Power(M_1, 3) * m2  -  TMath::Power(M_1, 5);
   	m6 = M_6  -  6 * M_1 * m5  -  15 * TMath::Power(M_1, 2) * m4   -  20 * TMath::Power(M_1, 3) * m3  -  15 * TMath::Power(M_1, 4) * m2  -  TMath::Power(M_1, 6);
   	m7 = M_7  -  7 * M_1 * m6  -  21 * TMath::Power(M_1, 2) * m5   -  35 * TMath::Power(M_1, 3) * m4  -  35 * TMath::Power(M_1, 4) * m3  -  21 * TMath::Power(M_1, 5) * m2  -  TMath::Power(M_1, 7);
-    m8 = M_8  -  8 * M_1 * m7  -  28 * TMath::Power(M_1, 2) * m6   -  56 * TMath::Power(M_1, 3) * m5  -  70 * TMath::Power(M_1, 4) * m4  -  56 * TMath::Power(M_1, 5) * m3  -  28 * TMath::Power(M_1, 6) * m2 - TMath::Power(M_1, 8);
+        m8 = M_8  -  8 * M_1 * m7  -  28 * TMath::Power(M_1, 2) * m6   -  56 * TMath::Power(M_1, 3) * m5  -  70 * TMath::Power(M_1, 4) * m4  -  56 * TMath::Power(M_1, 5) * m3  -  28 * TMath::Power(M_1, 6) * m2 - TMath::Power(M_1, 8);
 
     //cout << " " << RefMultBin << " \t"<< m1 <<"     \t"<< m2 <<"     \t"<< m3 <<"     \t"<< m4 <<"     \t"<< m5 <<"     \t"<< m6 <<"     \t"<< m7 <<"     \t"<< m8 << endl;
 
@@ -269,9 +269,9 @@ void Moments(Double_t **mu, Double_t **moments, Int_t RefMultLow, Int_t RefMultH
 	{
 		if(mu[i][1] > 0)
 		{
-			moments[i][0] = mu[i][0];																	//Mean.
-			moments[i][1] = TMath::Sqrt(mu[i][1]);										//Standared deviation.
-			moments[i][2] = mu[i][2]/TMath::Power(mu[i][1], 1.5);			//Skewness.
+			moments[i][0] = mu[i][0];					//Mean.
+			moments[i][1] = TMath::Sqrt(mu[i][1]);			        //Standared deviation.
+			moments[i][2] = mu[i][2]/TMath::Power(mu[i][1], 1.5);		//Skewness.
 			moments[i][3] = (mu[i][3]/TMath::Power(mu[i][1], 2)) - 3;	//Kurtosis.
 		}
 	}
@@ -327,13 +327,13 @@ void Cumulants(Double_t **mu, Double_t **cumulants, Int_t RefMultLow, Int_t RefM
 		//if(mu[i][1] > 0)
 		if(mu[i][0] > 0 && mu[i][1] > 0)
 		{
-			cumulants[i][0] = mu[i][0];																//C_1.
-			cumulants[i][1] = mu[i][1];																//C_2.
-			cumulants[i][2] = mu[i][2];																//C_3.
+			cumulants[i][0] = mu[i][0];					//C_1.
+			cumulants[i][1] = mu[i][1];				        //C_2.
+			cumulants[i][2] = mu[i][2];					//C_3.
 			cumulants[i][3] = mu[i][3] - 3*TMath::Power(mu[i][1], 2);	//C_4.
-			cumulants[i][4] = cumulants[i][1]/cumulants[i][0];				//C_2/C_1
-			cumulants[i][5] = cumulants[i][2]/cumulants[i][1];				//C_3/C_2
-			cumulants[i][6] = cumulants[i][3]/cumulants[i][1];				//C_4/C_2
+			cumulants[i][4] = cumulants[i][1]/cumulants[i][0];		//C_2/C_1
+			cumulants[i][5] = cumulants[i][2]/cumulants[i][1];		//C_3/C_2
+			cumulants[i][6] = cumulants[i][3]/cumulants[i][1];		//C_4/C_2
 		}
 	}
 }
@@ -496,7 +496,7 @@ void EC_Cumulants_DiffEff(Double_t **ec_cumulants_diffeff)
 		N[i] = FF_DF[i][1][0] + FF_DF[i][0][1];
 		ec_cumulants_diffeff[i][0] = FF_DF[i][1][0] - FF_DF[i][0][1];
 		ec_cumulants_diffeff[i][1] = N[i] - TMath::Power(ec_cumulants_diffeff[i][0], 2) + FF_DF[i][0][2] - 2*FF_DF[i][1][1] + FF_DF[i][2][0];
-    ec_cumulants_diffeff[i][2] = ec_cumulants_diffeff[i][0] + 2*TMath::Power(ec_cumulants_diffeff[i][0], 3) - FF_DF[i][0][3] - 3*FF_DF[i][0][2]
+                ec_cumulants_diffeff[i][2] = ec_cumulants_diffeff[i][0] + 2*TMath::Power(ec_cumulants_diffeff[i][0], 3) - FF_DF[i][0][3] - 3*FF_DF[i][0][2]
 																 + 3*FF_DF[i][1][2] + 3*FF_DF[i][2][0] - 3*FF_DF[i][2][1] + FF_DF[i][3][0]
 																 - 3*ec_cumulants_diffeff[i][0]*(N[i] + FF_DF[i][0][2] - 2*FF_DF[i][1][1] + FF_DF[i][2][0]);
   }
@@ -506,22 +506,22 @@ void Avg_Tot_Part_counting(Double_t *AvgTotPartArray)
 {
 	/*____________________Average number of total(<n+> + <n->) particles caculation for efficiancy correction.________________*/
 
-	TFile *LambdaCent_file 			= new TFile(InRootFile, "read");
+  TFile *LambdaCent_file 			= new TFile(InRootFile, "read");
 
-	TH2D *h_Lambdas_Cent 	   		= (TH2D*) LambdaCent_file->Get(hh_Lambdas_Cent);
-	TH2D *h_AntiLambdas_Cent 		= (TH2D*) LambdaCent_file->Get(hh_AntiLambdas_Cent);
+  TH2D *h_Lambdas_Cent 	   	  = (TH2D*) LambdaCent_file->Get(hh_Lambdas_Cent);
+  TH2D *h_AntiLambdas_Cent 	  = (TH2D*) LambdaCent_file->Get(hh_AntiLambdas_Cent);
   TH1D *h_Cent            	  = (TH1D*) LambdaCent_file->Get(hh_Cent);
 
-  Double_t LambdaCount 			= 0;
-  Double_t AntiLambdaCount 	= 0;
-  Double_t TotalLambdas 		= 0;
+  Double_t LambdaCount 		  = 0;
+  Double_t AntiLambdaCount 	  = 0;
+  Double_t TotalLambdas 	  = 0;
 
   for(int j = 2; j < 11; j++)
   {
     for(int i = 1; i < 15; i++) //21
     {
-			Double_t LambdaBinContent        = h_Lambdas_Cent     -> GetBinContent(i,j);
-		  Double_t AntiLambdaBinContent    = h_AntiLambdas_Cent -> GetBinContent(i,j);
+      Double_t LambdaBinContent        = h_Lambdas_Cent     -> GetBinContent(i,j);
+      Double_t AntiLambdaBinContent    = h_AntiLambdas_Cent -> GetBinContent(i,j);
       if(i > 1)
       {
         LambdaCount += (i-1)*LambdaBinContent;         // Count lambdas.
@@ -530,7 +530,7 @@ void Avg_Tot_Part_counting(Double_t *AvgTotPartArray)
 		}
     TotalLambdas = LambdaCount + AntiLambdaCount;
 
-  	Double_t NumberOfEvents    = h_Cent -> GetBinContent(j-1);
+    Double_t NumberOfEvents    = h_Cent -> GetBinContent(j-1);
     Double_t AvarageParticles  = TotalLambdas/NumberOfEvents;
 
     AvgTotPartArray[j-2] = AvarageParticles;
@@ -704,13 +704,13 @@ void EC_Cumulants(Double_t **cumulants, Double_t **ec_cumulants)
   }
 
 	Emptying3DArray(f, 9, fac_OD1, fac_OD2);
-  FactorialCalc(f, 9, fac_OD1, fac_OD2);
+        FactorialCalc(f, 9, fac_OD1, fac_OD2);
 
 	Double_t *AVG_TOT_PART;
 	AVG_TOT_PART = new Double_t[9];
 	Emptying1DArray(AVG_TOT_PART, 9);
 
-  Avg_Tot_Part_counting(AVG_TOT_PART);
+        Avg_Tot_Part_counting(AVG_TOT_PART);
 
 	for(Int_t i = 0; i < 9; i++)
 	{
@@ -768,12 +768,12 @@ void DeltaStatErrorForMoments(Double_t **mu, Double_t **error)
 
 void EC_C1_Err(Double_t *C1_Error, Double_t *eff)
 {
-	TFile *LambdaCent_file      = new TFile(InRootFile, "read");
-	TH1D *h_Cent                = (TH1D*) LambdaCent_file->Get(hh_Cent);
+  TFile *LambdaCent_file      = new TFile(InRootFile, "read");
+  TH1D *h_Cent                = (TH1D*) LambdaCent_file->Get(hh_Cent);
 
-	Double_t ***f;
+  Double_t ***f;
 
-	f = new Double_t**[9];
+  f = new Double_t**[9];
   for(Int_t i = 0; i < 9; i++)
   {
     f[i] = new Double_t*[9];
