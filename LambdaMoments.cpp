@@ -31,6 +31,8 @@
 #include <utility>
 #include <vector>
 
+using namespace std;
+
 //function definitions
 
 void Emptying1DArrayInt(Int_t *array, Int_t raws)
@@ -716,7 +718,7 @@ void EC_Cumulants(Double_t **cumulants, Double_t **ec_cumulants)
 	{
 		ec_cumulants[i][0] = cumulants[i][0]/Eff[i];  //CC_1
 		ec_cumulants[i][1] = (cumulants[i][1] - AVG_TOT_PART[i]*(1 - Eff[i]))/TMath::Power(Eff[i], 2);  //CC_2
-		ec_cumulants[i][2] = (cumulants[i][2] - cumulants[i][0]*(1 - TMath::Power(Eff[i], 2)) - 3*(1 - Eff[i])*(f[i][2][0] - f[i][0][2] - AVG_TOT_PART[i]*cumulants[i][0]))/TMath::Power(Eff[i], 3); 
+		ec_cumulants[i][2] = (cumulants[i][2] - cumulants[i][0]*(1 - TMath::Power(Eff[i], 2)) - 3*(1 - Eff[i])*(f[i][2][0] - f[i][0][2] - AVG_TOT_PART[i]*cumulants[i][0]))/TMath::Power(Eff[i], 3);
 		ec_cumulants[i][3] = (cumulants[i][3]
 		                     - AVG_TOT_PART[i] * TMath::Power(Eff[i], 2) * (1 - Eff[i])
 		                     - 3 * TMath::Power(AVG_TOT_PART[i], 2) * TMath::Power((1 - Eff[i]), 2)
